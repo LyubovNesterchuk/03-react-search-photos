@@ -19,7 +19,7 @@ export default function Text({
         style[`marginBottom${marginBottom}`],
       ].join(" ")}
     >
-      {children}
+      {children} 
     </p>
   );
 }
