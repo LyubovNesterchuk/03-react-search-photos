@@ -10,7 +10,7 @@ import Modal from "../Modal/Modal";
 
 import type { Photo } from "../../types/photo";
 import { getPhotos } from "../../services/photos";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function App() {
   const [photos, setPhotos] = useState<Photo[]>([]);
@@ -25,8 +25,8 @@ export default function App() {
       setIsError(false);
       const data = await getPhotos(query);
 
-      if (data.length === 0) {
-        alert("No photos found for your request.");
+      if (!data.length) {
+        toast.error(`No photos found for your request: ${query}.`);
       }
 
       setPhotos(data);
@@ -56,7 +56,9 @@ export default function App() {
 
           {isLoading && <Loader />}
 
-          {isError && <Text>Something went wrong. Please try again.</Text>}
+          {isError && <Text  textAlign="center">
+            Something went wrong. Please try again.
+            </Text>}
 
           {photos.length > 0 && (
             <PhotosGallery photos={photos} onOpenModal={handleSelectPhoto} />

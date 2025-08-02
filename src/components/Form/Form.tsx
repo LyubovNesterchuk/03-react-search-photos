@@ -14,11 +14,11 @@ export default function Form({onSubmit}:FormProps) {
     const query = formData.get("search") as string;
 
 if(query.trim()===""){
-  toast("Please enter your search query.");
+  toast.error("Please enter your search query.");
   return;
 }
 
-onSubmit(query.trim())
+onSubmit(query.trim());
   };
 
   return (
